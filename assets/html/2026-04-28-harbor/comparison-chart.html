@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: transparent;
+  }
+  .chart-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+<div class="chart-container">
+  <div id="radar"></div>
+  <div id="bars" style="margin-top: 24px;"></div>
+</div>
+<script>
+// Radar chart: normalized behavioral profile
+const categories = ['Avg Steps', 'Avg Turns', 'Output Tokens (K)', 'Thinking Calls', 'Tool Calls'];
+const opusRaw   = [83.0, 80.8, 200, 0, 45.0];
+const kimiRaw   = [56.5, 55.7, 149, 56.5, 55.7];
+
+// Normalize to max of each dimension
+const maxVals = categories.map((_, i) => Math.max(opusRaw[i], kimiRaw[i]));
+const opusNorm = opusRaw.map((v, i) => v / maxVals[i]);
+const kimiNorm = kimiRaw.map((v, i) => v / maxVals[i]);
+
+Plotly.newPlot('radar', [
+  {
+    type: 'scatterpolar',
+    r: [...opusNorm, opusNorm[0]],
+    theta: [...categories, categories[0]],
+    fill: 'toself',
+    fillcolor: 'rgba(99,102,241,0.12)',
+    line: { color: '#6366f1', width: 2.5 },
+    marker: { size: 6, color: '#6366f1' },
+    name: 'Claude Opus 4-7',
+    hovertemplate: '%{theta}: %{customdata}<extra>Opus 4-7</extra>',
+    customdata: [...opusRaw.map(v => v.toLocaleString()), opusRaw[0].toLocaleString()]
+  },
+  {
+    type: 'scatterpolar',
+    r: [...kimiNorm, kimiNorm[0]],
+    theta: [...categories, categories[0]],
+    fill: 'toself',
+    fillcolor: 'rgba(16,185,129,0.12)',
+    line: { color: '#10b981', width: 2.5 },
+    marker: { size: 6, color: '#10b981' },
+    name: 'Kimi K2.6',
+    hovertemplate: '%{theta}: %{customdata}<extra>Kimi K2.6</extra>',
+    customdata: [...kimiRaw.map(v => v.toLocaleString()), kimiRaw[0].toLocaleString()]
+  }
+], {
+  polar: {
+    radialaxis: { visible: true, range: [0, 1.05], showticklabels: false, gridcolor: '#e5e7eb' },
+    angularaxis: { gridcolor: '#e5e7eb', linecolor: '#e5e7eb', tickfont: { size: 12, color: '#374151' } },
+    bgcolor: 'rgba(0,0,0,0)'
+  },
+  showlegend: true,
+  legend: { x: 0.5, xanchor: 'center', y: -0.08, orientation: 'h', font: { size: 13 } },
+  title: { text: 'Agent Behavioral Profile', font: { size: 16, color: '#1f2937' }, y: 0.97 },
+  margin: { t: 60, b: 50, l: 60, r: 60 },
+  paper_bgcolor: 'rgba(0,0,0,0)',
+  plot_bgcolor: 'rgba(0,0,0,0)',
+  height: 400
+}, { responsive: true, displayModeBar: false });
+
+// Grouped bar chart: key metrics side by side
+const barMetrics = ['Partial<br>Score', 'Avg<br>Steps', 'Avg<br>Turns', 'Output<br>Tokens (K)', 'Thinking<br>Calls', 'Tool<br>Calls', 'Zero-Score<br>Tasks'];
+const opusBars = [35.1, 83.0, 80.8, 200, 0, 45.0, 52];
+const kimiBars = [34.0, 56.5, 55.7, 149, 56.5, 55.7, 50];
+
+Plotly.newPlot('bars', [
+  {
+    x: barMetrics, y: opusBars, type: 'bar', name: 'Claude Opus 4-7',
+    marker: { color: '#6366f1', line: { width: 0 } },
+    hovertemplate: '%{x}: %{y}<extra>Opus 4-7</extra>',
+    width: 0.35
+  },
+  {
+    x: barMetrics, y: kimiBars, type: 'bar', name: 'Kimi K2.6',
+    marker: { color: '#10b981', line: { width: 0 } },
+    hovertemplate: '%{x}: %{y}<extra>Kimi K2.6</extra>',
+    width: 0.35
+  }
+], {
+  barmode: 'group',
+  title: { text: 'Head-to-Head Comparison', font: { size: 16, color: '#1f2937' }, y: 0.97 },
+  xaxis: { tickfont: { size: 11, color: '#374151' }, gridcolor: '#f3f4f6' },
+  yaxis: { gridcolor: '#f3f4f6', tickfont: { size: 11, color: '#6b7280' } },
+  showlegend: true,
+  legend: { x: 0.5, xanchor: 'center', y: -0.18, orientation: 'h', font: { size: 13 } },
+  margin: { t: 50, b: 70, l: 50, r: 20 },
+  paper_bgcolor: 'rgba(0,0,0,0)',
+  plot_bgcolor: 'rgba(0,0,0,0)',
+  height: 350,
+  bargap: 0.25
+}, { responsive: true, displayModeBar: false });
+</script>
+</body>
+</html>
