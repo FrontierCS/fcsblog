@@ -93,7 +93,13 @@
         {{ content }}
       </d-article>
 
+      {% include keep_reading.html %}
+
     </div>
+
+    <d-appendix></d-appendix>
+
+    {%- include bottom_nav.html %}
 
     {% include scripts/bootstrap.html %}
     {% include scripts/analytics.html %}
