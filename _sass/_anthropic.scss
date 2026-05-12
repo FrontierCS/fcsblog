@@ -1199,9 +1199,9 @@ footer.fc-bottom-nav,
   margin: 1.75rem 0 !important;
 }
 
-// 28. Distill byline — tighter eyebrows + sans uniform.
+// 28. Distill byline — single divider below (above article).
 .post.distill d-byline {
-  border-top: 1px solid var(--fc-industrial-line) !important;
+  border-top: 0 !important;
   border-bottom: 1px solid var(--fc-industrial-line) !important;
   padding: 1.75rem 0 1.5rem !important;
   margin: 2rem 0 2.5rem !important;
@@ -1224,6 +1224,10 @@ footer.fc-bottom-nav,
   line-height: 1.55 !important;
   color: var(--fc-industrial-ink) !important;
   font-weight: 400 !important;
+}
+
+.post.distill d-article {
+  border-top: 0 !important;
 }
 
 .post.distill d-byline a,
@@ -1714,17 +1718,52 @@ figure.highlight code {
   margin: 0 auto;
 }
 
-// 42. Distill body — tighter reading column (~720px) for comfortable line length.
+// 42. Distill body — extend reading column to fill the right gutter (text-start → page-end).
 .post.distill d-article > p,
 .post.distill d-article > ul,
 .post.distill d-article > ol,
+.post.distill d-article > dl,
 .post.distill d-article > blockquote,
+.post.distill d-article > h1,
 .post.distill d-article > h2,
 .post.distill d-article > h3,
 .post.distill d-article > h4,
 .post.distill d-article > h5,
-.post.distill d-article > h6 {
-  max-width: 720px !important;
+.post.distill d-article > h6,
+.post.distill d-article > div,
+.post.distill d-article > table,
+.post.distill d-article > pre,
+.post.distill d-article > figure,
+.post.distill d-article > iframe,
+.post.distill d-article > hr,
+.post.distill d-article > .highlight,
+.post.distill d-article > .highlighter-rouge {
+  max-width: none !important;
+  grid-column: text-start / page-end !important;
+}
+
+@media (max-width: 1024px) {
+  .post.distill d-article > p,
+  .post.distill d-article > ul,
+  .post.distill d-article > ol,
+  .post.distill d-article > dl,
+  .post.distill d-article > blockquote,
+  .post.distill d-article > h1,
+  .post.distill d-article > h2,
+  .post.distill d-article > h3,
+  .post.distill d-article > h4,
+  .post.distill d-article > h5,
+  .post.distill d-article > h6,
+  .post.distill d-article > div,
+  .post.distill d-article > table,
+  .post.distill d-article > pre,
+  .post.distill d-article > figure,
+  .post.distill d-article > iframe,
+  .post.distill d-article > hr,
+  .post.distill d-article > .highlight,
+  .post.distill d-article > .highlighter-rouge {
+    grid-column: 2 / -2 !important;
+  }
 }
 
 // 43. Section anchor links (#) revealed on hover.
@@ -2025,4 +2064,56 @@ h4:hover .fc-anchor,
   .fc-school-grid .fc-school-card img { height: 38px !important; max-height: 38px !important; }
   .fc-school-grid .fc-school-card p { font-size: 0.7rem !important; }
   .fc-school-grid .fc-school-card { min-height: 102px !important; padding: 0.85rem 0.5rem 0.7rem !important; }
+}
+
+// 51. Markdown table — fit content, centered, larger type, bold header.
+.post.distill d-article > table,
+.post-content > table {
+  width: fit-content !important;
+  max-width: 100% !important;
+  justify-self: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.post.distill d-article > table th,
+.post.distill d-article > table td,
+.post-content > table th,
+.post-content > table td {
+  font-size: 1.0625rem !important;
+  padding: 0.65rem 1.1rem !important;
+}
+
+.post.distill d-article > table thead th,
+.post-content > table thead th {
+  font-weight: 700 !important;
+}
+
+// 52. Fenced code blocks — single visual box on outer .highlighter-rouge only.
+.post.distill d-article div.highlighter-rouge,
+.post-content div.highlighter-rouge {
+  background: rgba(17, 26, 39, 0.05) !important;
+  border: 1px solid var(--fc-industrial-line) !important;
+  border-radius: 10px !important;
+  padding: 1rem 1.25rem !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto;
+  font-family: var(--fc-font-mono) !important;
+  font-size: 0.875rem !important;
+  line-height: 1.6 !important;
+}
+
+.post.distill d-article div.highlighter-rouge .highlight,
+.post.distill d-article div.highlighter-rouge pre,
+.post.distill d-article div.highlighter-rouge code,
+.post-content div.highlighter-rouge .highlight,
+.post-content div.highlighter-rouge pre,
+.post-content div.highlighter-rouge code {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
