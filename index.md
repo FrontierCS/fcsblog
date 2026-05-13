@@ -116,7 +116,7 @@ permalink: /
     <div>
       <h2>Leaderboard</h2>
     </div>
-    <span>Updated 2026-05-04</span>
+    <span>Updated 2026-05-13</span>
   </div>
 
   <div class="fc-leaderboard-tabs" role="tablist" aria-label="Leaderboard tracks">
@@ -288,11 +288,41 @@ permalink: /
     <article class="fc-leaderboard-card fc-leaderboard-panel" data-fc-leaderboard-panel="agent">
       <div class="fc-leaderboard-card-header">
         <h3>Agent Track</h3>
-        <p>Coming soon</p>
+        <p>178 tasks</p>
       </div>
-      <div class="fc-leaderboard-empty">
-        <p>Agent results will appear here once the track is released.</p>
+      <div class="fc-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Agent</th>
+              <th>Score</th>
+              <th>Avg Steps</th>
+              <th>Avg Tools</th>
+              <th>Avg Tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><span class="fc-model-entry"><span class="fc-model-logo" aria-hidden="true">K</span><span class="fc-model-name">Kimi K2.6</span></span></td>
+              <td>46.9</td>
+              <td>67.2</td>
+              <td>70.6</td>
+              <td>155.6K</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><span class="fc-model-entry"><span class="fc-model-logo" aria-hidden="true">C</span><span class="fc-model-name">Claude Code Opus 4.7</span></span></td>
+              <td>43.0</td>
+              <td>77.2</td>
+              <td>42.2</td>
+              <td>251K</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+      <p class="fc-human-reference">Preview Harbor runs with a 5-hour timeout per task. See the <a href="{{ '/blog/harbor/' | relative_url }}">release blog</a> for trace-level analysis.</p>
     </article>
   </div>
 
@@ -410,4 +440,3 @@ permalink: /
     </div>
   </div>
 </section>
-
