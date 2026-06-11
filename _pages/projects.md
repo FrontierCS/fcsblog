@@ -16,7 +16,7 @@ permalink: /paper/
         <img src="{{ '/assets/img/papers/frontier-cs-logo.png' | relative_url }}" alt="Frontier-CS logo">
       </div>
       <p class="fc-project-card-kicker">Paper</p>
-      <h2>Frontier-CS Benchmark</h2>
+      <h2>Frontier-CS</h2>
       <p>Read the benchmark paper for methodology, task design, model results, and analysis.</p>
       <span>Read paper ↗</span>
     </a>
