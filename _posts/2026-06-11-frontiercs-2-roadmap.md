@@ -26,40 +26,11 @@ toc:
   - name: "What We Want Researchers to Try"
 
 _styles: >
-  .post.distill {
-    padding-top: 0.8rem !important;
-  }
-  .post.distill d-title {
-    padding-top: 2.5rem !important;
-    padding-bottom: 0 !important;
-  }
-  .post.distill d-title h1 {
-    font-size: clamp(2.35rem, 4.6vw, 3.9rem) !important;
-    line-height: 1.04 !important;
-    margin-bottom: 0.8rem !important;
-  }
-  .post.distill d-title p {
-    max-width: 760px !important;
-    font-style: normal !important;
-    font-size: 1.08rem !important;
-    line-height: 1.45 !important;
-    margin-bottom: 0.35rem !important;
-  }
-  .post.distill d-byline {
-    margin-top: 0 !important;
-    padding-top: 0.35rem !important;
-    padding-bottom: 0.8rem !important;
-    margin-bottom: 1.35rem !important;
-  }
   .post.distill > .fc-post-hero {
     display: none;
   }
-  .post.distill d-contents {
-    margin-bottom: 2.6rem !important;
-  }
   .post.distill d-article {
     line-height: 1.48 !important;
-    padding-top: 1rem !important;
   }
   .post.distill d-article > p,
   .post.distill d-article > ul,
@@ -242,29 +213,6 @@ _styles: >
     font-size: 0.92em;
   }
   @media (max-width: 860px) {
-    .post.distill d-title {
-      padding-top: 2.25rem !important;
-      padding-bottom: 0.8rem !important;
-    }
-    .post.distill d-title h1 {
-      font-size: 2.1rem !important;
-      line-height: 1.04 !important;
-      margin-bottom: 1rem !important;
-    }
-    .post.distill d-title p {
-      font-size: 0.96rem !important;
-      line-height: 1.42 !important;
-      margin-bottom: 0 !important;
-    }
-    .post.distill d-byline {
-      margin-top: 0 !important;
-      padding-top: 0.25rem !important;
-      padding-bottom: 0.6rem !important;
-      margin-bottom: 0.75rem !important;
-    }
-    .post.distill d-contents {
-      display: none !important;
-    }
     d-article .update-grid {
       grid-template-columns: 1fr;
       gap: 0.5rem;
